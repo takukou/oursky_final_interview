@@ -31,10 +31,10 @@
 		}
 		taskArray.push(task);
 		var x = taskArray.length-1;
-		var time = '<label class="minutes'+ x +'">0</label>:<label class="seconds'+ x +'">0</label>'
+		var time = '<label id="minutes'+ x +'">0</label>:<label id="seconds'+ x +'">0</label>'
 		var complete = '<button type="button" onclick="complete('+ x + ')">Complete</button>';
 		
-		var taskName = '<div class="countup">' + $("#task").val() + time + complete + '</div>'
+		var taskName = '<div id="countup'+x+'">' + $("#task").val() + time +pause+ complete + '</div>'
 		$("#tasks").append(taskName);
     }
 	
@@ -50,11 +50,11 @@
 					if(taskArray[x].sec >= 59){
 						taskArray[x].min++;
 						taskArray[x].sec = 0;
-						$(".minutes"+x).text(taskArray[x].min);
-						$(".seconds"+x).text(taskArray[x].sec);
+						$("#minutes"+x).text(taskArray[x].min);
+						$("#seconds"+x).text(taskArray[x].sec);
 					}else{
 						taskArray[x].sec++;
-						$(".seconds"+x).text(taskArray[x].sec);
+						$("#seconds"+x).text(taskArray[x].sec);
 					}
 					console.log(taskArray.length);
 					console.log("X:" + x);
