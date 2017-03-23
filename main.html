@@ -11,7 +11,7 @@
  	<div>
  		<form>
  			<input id="task" placeholder="Enter task name"> 
-    		<button type="button" onclick="timerFunction()">Start</button>
+    		<button type="button" onclick="addTask()">Start</button>
  		</form>
  	</div>
 	
@@ -20,21 +20,48 @@
     <div id="tasks">
     </div>
  <script>
- 	function timerFunction(){
-			
-		var time = '<label id="minutes">00</label>:<label id="seconds">00</label>'
-		var taskName = '<div>' + $("#task").val() + time + '</div>'
-		//document.getElementById('tasks').appendChild(taskName);	
+	
+ 
+	var taskArray = new Array();
+ 
+		function addTask(){
+			var task = {
+			min:0,
+			sec:0
+		}
+	    taskArray.push(task);
+		var x = taskArray.length-1;
+		var time = '<label class="minutes'+ x +'">0</label>:<label class="seconds'+ x +'">0</label>'
+		
+		
+		var taskName = '<div class="countup">' + $("#task").val() + time + '</div>'
 		$("#tasks").append(taskName);
     }
 	
-	var sec = 0;
-	function pad ( val ) { return val > 9 ? val : "0" + val; }
-	setInterval( function(){
-		$("#seconds").html(pad(++sec%60));
-		$("#minutes").html(pad(parseInt(sec/60,10)));
-	}, 1000);
-    
+	
+	
+	//function pad ( val ) { return val > 9 ? val : "0" + val; }
+	var x = 0;
+		setInterval(
+			function(){
+				for(x in taskArray){
+					if(taskArray[x].sec > 59){
+						taskArray[x].min++;
+						taskArray[x].sec = 0;
+						$(".minutes"+x).text(taskArray[x].min);
+						$(".seconds"+x).text(taskArray[x].sec);
+					}else{
+						taskArray[x].sec++;
+						$(".seconds"+x).text(taskArray[x].sec);
+					}
+					console.log(taskArray.length);
+					console.log("X:" + x);
+					console.log(taskArray[x].min);
+					console.log(taskArray[x].sec);
+				}
+			}
+			
+	, 1000);
  </script>
  </body>
 </html>
