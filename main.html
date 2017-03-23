@@ -14,16 +14,24 @@
     		<button type="button" onclick="timerFunction()">Start</button>
  		</form>
  	</div>
-    
+	
+    <label id="minutes">00</label>:<label id="seconds">00</label>
+	
     <div id="tasks">
     </div>
  <script>
  	function timerFunction(){
 		var taskName = document.createElement('div');
 		taskName.innerHTML = $("#task").val();
-		document.getElementById('tasks').appendChild(taskName);
-		
+		document.getElementById('tasks').appendChild(taskName);	
     }
+	
+	var sec = 0;
+	function pad ( val ) { return val > 9 ? val : "0" + val; }
+	setInterval( function(){
+		$("#seconds").html(pad(++sec%60));
+		$("#minutes").html(pad(parseInt(sec/60,10)));
+	}, 1000);
     
  </script>
  </body>
