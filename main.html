@@ -19,10 +19,10 @@
     </div>
  <script>
  	function timerFunction(){
-    	//var taskName = document.createTextNode($("#task").val());
-		var taskName = $("#task").val();
-		console.log(taskName);
-        document.getElementById('tasks').innerHTML = taskName;
+		var taskName = document.createElement('div');
+		taskName.innerHTML = $("#task").val();
+		document.getElementById('tasks').appendChild(taskName);
+		
     }
     
  </script>
