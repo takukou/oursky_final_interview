@@ -32,11 +32,23 @@
 		taskArray.push(task);
 		var x = taskArray.length-1;
 		var time = '<label id="minutes'+ x +'">0</label>:<label id="seconds'+ x +'">0</label>'
+		
+		var pause = '<button id="pause' + x + '" type="button" onclick="pause(' + x + ')">Pause</button>';
 		var complete = '<button type="button" onclick="complete('+ x + ')">Complete</button>';
 		
 		var taskName = '<div id="countup'+x+'">' + $("#task").val() + time +pause+ complete + '</div>'
 		$("#tasks").append(taskName);
     }
+	
+	function pause(x) {
+		document.getElementById("pause"+x).onclick = function(){ unpause(x) };
+		$("#pause"+x).text("Unpause");
+	}
+	
+	function unpause(x) {
+		document.getElementById("pause"+x).onclick = function(){ pause(x) };
+		$("#pause"+x).text("Pause");
+	}
 	
 	function complete(x){
 		delete taskArray[x]; // looks like a bad practice
