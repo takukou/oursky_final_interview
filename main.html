@@ -24,28 +24,30 @@
  
 	var taskArray = new Array();
  
-		function addTask(){
-			var task = {
-			min:0,
-			sec:0
+	function addTask(){
+		var task = {
+		min:0,
+		sec:0
 		}
-	    taskArray.push(task);
+		taskArray.push(task);
 		var x = taskArray.length-1;
 		var time = '<label class="minutes'+ x +'">0</label>:<label class="seconds'+ x +'">0</label>'
+		var complete = '<button type="button" onclick="complete('+ x + ')">Complete</button>';
 		
-		
-		var taskName = '<div class="countup">' + $("#task").val() + time + '</div>'
+		var taskName = '<div class="countup">' + $("#task").val() + time + complete + '</div>'
 		$("#tasks").append(taskName);
     }
 	
-	
-	
-	//function pad ( val ) { return val > 9 ? val : "0" + val; }
+	function complete(x){
+		delete taskArray[x]; // looks like a bad practice
+		//taskArray.splice(x,1);
+	}
+
 	var x = 0;
 		setInterval(
 			function(){
 				for(x in taskArray){
-					if(taskArray[x].sec > 59){
+					if(taskArray[x].sec >= 59){
 						taskArray[x].min++;
 						taskArray[x].sec = 0;
 						$(".minutes"+x).text(taskArray[x].min);
