@@ -15,15 +15,17 @@
  		</form>
  	</div>
 	
-    <label id="minutes">00</label>:<label id="seconds">00</label>
+    
 	
     <div id="tasks">
     </div>
  <script>
  	function timerFunction(){
-		var taskName = document.createElement('div');
-		taskName.innerHTML = $("#task").val();
-		document.getElementById('tasks').appendChild(taskName);	
+			
+		var time = '<label id="minutes">00</label>:<label id="seconds">00</label>'
+		var taskName = '<div>' + $("#task").val() + time + '</div>'
+		//document.getElementById('tasks').appendChild(taskName);	
+		$("#tasks").append(taskName);
     }
 	
 	var sec = 0;
