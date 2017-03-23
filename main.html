@@ -1,8 +1,30 @@
 <!DOCTYPE html>
 <html>
- <h1>Task Timer</h1>
- 
- <form>
- 	<input name="task" placeholder="Enter task name"> 
- </form>
+<head>
+
+<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" 
+	integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+</head>
+ <body>
+ 	<h1>Task Timer</h1>
+ 	<div>
+ 		<form>
+ 			<input id="task" placeholder="Enter task name"> 
+    		<button type="button" onclick="timerFunction()">Start</button>
+ 		</form>
+ 	</div>
+    
+    <div id="tasks">
+    </div>
+ <script>
+ 	function timerFunction(){
+    	//var taskName = document.createTextNode($("#task").val());
+		var taskName = $("#task").val();
+		console.log(taskName);
+        document.getElementById('tasks').innerHTML = taskName;
+    }
+    
+ </script>
+ </body>
 </html>
